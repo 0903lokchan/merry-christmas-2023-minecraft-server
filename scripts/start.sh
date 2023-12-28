@@ -1,8 +1,11 @@
 #! /bin/bash
 
+# To be configured as the start-up script of server VM
+
 disk_name=google-persistent-disk-1
 disk_mount=/home/minecraft
 server_dir=$disk_mount/server
+screen_name=mcs
 
 # check if persistant disk is mounted
 echo "INFO Checking disk mounts..."
@@ -57,8 +60,8 @@ echo "INFO All pre-checks are completed. Proceeding with starting the server..."
 # Move pwd so run.sh correctly picks up the java arguments
 cd /home/minecraft/server
 # Start a detached screen for running Minecraft in the background, while allowing attaching for server ops
-screen -dmS mcs sudo sh /home/minecraft/server/run.sh
+screen -dmS $screen_name sudo sh /home/minecraft/server/run.sh
 
-echo 'INFO Successfully start up the Minecraft server. Run "screen -r mcs" to log into the server session.'
+echo 'INFO Successfully start up the Minecraft server. Run "screen -r $screen_name" to log into the server session.'
 echo "INFO Exiting with return code 0..."
 exit 0
