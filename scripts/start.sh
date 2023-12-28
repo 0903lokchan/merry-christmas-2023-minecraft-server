@@ -63,5 +63,9 @@ cd /home/minecraft/server
 screen -dmS $screen_name sudo sh /home/minecraft/server/run.sh
 
 echo 'INFO Successfully start up the Minecraft server. Run "screen -r $screen_name" to log into the server session.'
+
+(crontab -l | grep -v -F "/home/minecraft/backup.sh" ; echo "0 */2 * * * /home/minecraft/backup.sh")| crontab -
+echo "INFO Scheduled backups as a cron job"
+
 echo "INFO Exiting with return code 0..."
 exit 0
