@@ -60,7 +60,7 @@ echo "INFO All pre-checks are completed. Proceeding with starting the server..."
 # Move pwd so run.sh correctly picks up the java arguments
 cd /home/minecraft/server
 # Start a detached screen for running Minecraft in the background, while allowing attaching for server ops
-screen -dmS $screen_name sudo sh /home/minecraft/server/run.sh
+sudo screen -dmS $screen_name sudo sh /home/minecraft/server/run.sh
 
 echo 'INFO Successfully start up the Minecraft server. Run "screen -r $screen_name" to log into the server session.'
 
