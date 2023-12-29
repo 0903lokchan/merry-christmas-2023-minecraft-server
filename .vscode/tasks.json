@@ -1,0 +1,49 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Update startup script",
+      "type": "shell",
+      "command": "gcloud",
+      "args": [
+        "compute",
+        "instances",
+        "add-metadata",
+        "merry-christmas-2023",
+        "--metadata-from-file",
+        "startup-script=scripts/start.sh"
+      ]
+    },
+    {
+      "label": "Update shutdown script",
+      "type": "shell",
+      "command": "gcloud",
+      "args": [
+        "compute",
+        "instances",
+        "add-metadata",
+        "merry-christmas-2023",
+        "--metadata-from-file",
+        "shutdown-script=scripts/stop.sh"
+      ]
+    },
+    {
+      "label": "Update VM scripts",
+      "dependsOn": ["Update startup script", "Update shutdown script"]
+    },
+    {
+      "label": "Start VM",
+      "type": "shell",
+      "command": "gcloud",
+      "args": ["compute", "instances", "start", "merry-christmas-2023"]
+    },
+    {
+      "label": "Stop VM",
+      "type": "shell",
+      "command": "gcloud",
+      "args": ["compute", "instances", "stop", "merry-christmas-2023"]
+    }
+  ]
+}
