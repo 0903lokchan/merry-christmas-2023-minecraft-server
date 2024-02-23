@@ -44,6 +44,27 @@
       "type": "shell",
       "command": "gcloud",
       "args": ["compute", "instances", "stop", "merry-christmas-2023"]
+    },
+    {
+      "label": "Deploy Cloud Function start-minecraft-server",
+      "type": "shell",
+      "command": "gcloud",
+      "args": [
+          "functions",
+          "deploy",
+          "start_minecraft_server",
+          "--gen2",
+          "--region=us-central1",
+          "--runtime=python312",
+          "--trigger-http",
+          "--source=./cloud_functions/start-minecraft-server",
+          "--entry-point=start_minecraft_server",
+          "--allow-unauthenticated"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
     }
   ]
 }
